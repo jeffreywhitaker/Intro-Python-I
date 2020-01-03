@@ -22,3 +22,28 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+if (len(sys.argv) > 1):
+  userInputMonth = int(sys.argv[1])
+else: userInputMonth = ""
+
+if (len(sys.argv) > 2):
+  userInputYear = int(sys.argv[2])
+else: userInputYear = ""
+
+def cal(userInputMonth, userInputYear):
+  now = datetime.now()
+
+  calnd = calendar.TextCalendar(firstweekday=6)
+  if (userInputMonth == ""):
+    for i in calnd.itermonthdates(now.year, now.month):
+      print(i)
+  elif (userInputMonth and userInputYear == ""):
+    for i in calnd.itermonthdates(now.year, userInputMonth):
+      print(i)
+  elif (userInputYear):
+    for i in calnd.itermonthdates(userInputYear, userInputMonth):
+      print(i)
+  else:
+    print("Use proper format")
+cal(userInputMonth, userInputYear)
